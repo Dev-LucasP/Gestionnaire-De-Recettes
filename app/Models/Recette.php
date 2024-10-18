@@ -2,9 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Recette extends Model
 {
-    //
+    use HasFactory;
+
+    /*
+     * The attributes that are mass assignable.
+     */
+    protected $fillable = ['nom', 'description', 'categorie', 'visuel', 'temps_preparation', 'nb_personnes', 'cout'];
 }
