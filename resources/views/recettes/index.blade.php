@@ -1,3 +1,4 @@
+<x-app-layout>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -21,3 +22,4 @@
 @endif
 </body>
 </html>
+</x-app-layout>

@@ -12,5 +12,5 @@ class Recette extends Model
     /*
      * The attributes that are mass assignable.
      */
-    protected $fillable = ['nom', 'description', 'categorie', 'visuel', 'temps_preparation', 'nb_personnes', 'cout'];
+    protected $fillable = ['nom', 'description', 'categorie', 'visuel', 'temps_preparation', 'nb_personnes', 'cout', 'created_at', 'updated_at'];
 }
