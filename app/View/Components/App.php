@@ -21,10 +21,6 @@ class App extends Component
      */
     public function render(): View|Closure|string
     {
-<<<<<<< HEAD
         return view('components.app');
-=======
-        return view('components.app-layout');
->>>>>>> origin/bug-affichage-recette
     }
 }

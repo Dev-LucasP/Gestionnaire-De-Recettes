@@ -9,7 +9,7 @@ class Recette extends Model
 {
     use HasFactory;
 
-<<<<<<< HEAD
+
     protected $fillable = [
         'nom',
         'description',
@@ -21,10 +21,4 @@ class Recette extends Model
     ];
 }
 
-=======
-    /*
-     * The attributes that are mass assignable.
-     */
-    protected $fillable = ['nom', 'description', 'categorie', 'visuel', 'temps_preparation', 'nb_personnes', 'cout', 'created_at', 'updated_at'];
-}
->>>>>>> origin/bug-affichage-recette
+
