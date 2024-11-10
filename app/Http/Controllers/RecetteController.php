@@ -4,22 +4,43 @@ namespace App\Http\Controllers;
 
 use App\Models\Recette;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class RecetteController extends Controller
 {
     // Affiche la liste des recettes
     public function index(Request $request)
     {
-        $cat = $request->input('cat', 'All');
+        // Récupérer le critère de catégorie de la requête ou du cookie
+        $cat = $request->input('cat', null);
+        $value = $request->cookie('cat', null);
 
-        if ($cat != 'All') {
-            $recettes = Recette::where('categorie', $cat)->get();
+        if (!isset($cat)) {
+            // Si aucun critère n'est passé, utiliser la valeur du cookie
+            if (!isset($value)) {
+                $recettes = Recette::all();
+                $cat = 'All';
+                Cookie::expire('cat');
+            } else {
+                $recettes = Recette::where('categorie', $value)->get();
+                $cat = $value;
+                Cookie::queue('cat', $cat, 10);  // Conserver le critère dans le cookie pendant 10 minutes
+            }
         } else {
-            $recettes = Recette::all();
+            // Si un critère est passé, l'utiliser et mettre à jour le cookie
+            if ($cat == 'All') {
+                $recettes = Recette::all();
+                Cookie::expire('cat');  // Supprimer le cookie si la catégorie est "All"
+            } else {
+                $recettes = Recette::where('categorie', $cat)->get();
+                Cookie::queue('cat', $cat, 10);  // Conserver le critère dans le cookie pendant 10 minutes
+            }
         }
 
+        // Récupérer la liste des catégories disponibles pour le filtrage
         $categories = Recette::distinct('categorie')->pluck('categorie');
 
+        // Retourner la vue avec les données nécessaires
         return view('recettes.index', [
             'titre' => 'Liste des Recettes',
             'recettes' => $recettes,
@@ -27,6 +48,7 @@ class RecetteController extends Controller
             'categories' => $categories
         ]);
     }
+
 
 
     // Affiche le formulaire pour créer une nouvelle recette
