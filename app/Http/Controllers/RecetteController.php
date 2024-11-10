@@ -8,14 +8,26 @@ use Illuminate\Http\Request;
 class RecetteController extends Controller
 {
     // Affiche la liste des recettes
-    public function index()
+    public function index(Request $request)
     {
-        $recettes = Recette::all();
+        $cat = $request->input('cat', 'All');
+
+        if ($cat != 'All') {
+            $recettes = Recette::where('categorie', $cat)->get();
+        } else {
+            $recettes = Recette::all();
+        }
+
+        $categories = Recette::distinct('categorie')->pluck('categorie');
+
         return view('recettes.index', [
             'titre' => 'Liste des Recettes',
-            'recettes' => $recettes
+            'recettes' => $recettes,
+            'cat' => $cat,
+            'categories' => $categories
         ]);
     }
+
 
     // Affiche le formulaire pour créer une nouvelle recette
     public function create()
