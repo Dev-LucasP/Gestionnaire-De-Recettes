@@ -4,14 +4,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecetteController;
 
 Route::get('/', function () {
+    // Route pour afficher la page d'accueil
     return view('statiques.accueil', ['titre' => 'Accueil']);
 })->name('accueil');
 
 Route::get('/presentation', function () {
+    // Route pour afficher la page de présentation
     return view('statiques.presentation', ['titre' => 'Présentation']);
 })->name('presentation');
 
 Route::get('/contact', function () {
+    // Route pour afficher la page de contact
     return view('statiques.contact', ['titre' => 'Contact']);
 })->name('contact');
 
@@ -35,4 +38,3 @@ Route::put('/recettes/{recette}', [RecetteController::class, 'update'])->name('r
 
 // Route pour supprimer une recette
 Route::delete('/recettes/{recette}', [RecetteController::class, 'destroy'])->name('recettes.destroy');
-

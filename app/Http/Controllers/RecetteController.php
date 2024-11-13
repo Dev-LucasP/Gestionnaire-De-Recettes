@@ -8,7 +8,12 @@ use Illuminate\Support\Facades\Cookie;
 
 class RecetteController extends Controller
 {
-    // Affiche la liste des recettes
+    /**
+     * Affiche la liste des recettes.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     */
     public function index(Request $request)
     {
         // Récupérer le critère de catégorie de la requête ou du cookie
@@ -49,14 +54,22 @@ class RecetteController extends Controller
         ]);
     }
 
-
-
-    // Affiche le formulaire pour créer une nouvelle recette
+    /**
+     * Affiche le formulaire pour créer une nouvelle recette.
+     *
+     * @return \Illuminate\View\View
+     */
     public function create()
     {
         return view('recettes.create');
     }
 
+    /**
+     * Enregistre une nouvelle recette dans la base de données.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -76,20 +89,35 @@ class RecetteController extends Controller
         return redirect()->route('recettes.index')->with('success', 'Recette ajoutée avec succès');
     }
 
-    // Affiche une recette spécifique
+    /**
+     * Affiche une recette spécifique.
+     *
+     * @param  \App\Models\Recette  $recette
+     * @return \Illuminate\View\View
+     */
     public function show(Recette $recette)
     {
         return view('recettes.show', compact('recette'));
     }
 
-    // Affiche le formulaire pour modifier une recette existante
+    /**
+     * Affiche le formulaire pour modifier une recette existante.
+     *
+     * @param  \App\Models\Recette  $recette
+     * @return \Illuminate\View\View
+     */
     public function edit(Recette $recette)
     {
         return view('recettes.edit', compact('recette'));
     }
 
-    // Met à jour une recette
-
+    /**
+     * Met à jour une recette existante dans la base de données.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Recette  $recette
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, Recette $recette)
     {
         $validatedData = $request->validate([
@@ -109,7 +137,12 @@ class RecetteController extends Controller
         return redirect()->route('recettes.index')->with('success', 'Recette modifiée avec succès');
     }
 
-    // Supprime une recette
+    /**
+     * Supprime une recette de la base de données.
+     *
+     * @param  \App\Models\Recette  $recette
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(Recette $recette)
     {
         $recette->delete();

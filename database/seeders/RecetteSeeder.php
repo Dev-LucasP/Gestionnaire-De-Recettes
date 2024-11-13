@@ -2,30 +2,19 @@
 
 namespace Database\Seeders;
 
-<<<<<<< HEAD
 use Illuminate\Database\Seeder;
 use App\Models\Recette;
-
-class RecetteSeeder extends Seeder
-{
-    public function run()
-    {
-        Recette::factory()->count(10)->create(); // Crée 10 recettes aléatoires
-    }
-}
-
-=======
-use App\Models\Recette;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 
 class RecetteSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Exécute les commandes de la base de données pour semer les données.
+     *
+     * @return void
      */
-    public function run(): void {
+    public function run()
+    {
+        // Crée 10 recettes aléatoires en utilisant la fabrique de modèles
         Recette::factory()->count(10)->create();
     }
 }
->>>>>>> origin/bug-affichage-recette

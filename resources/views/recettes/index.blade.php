@@ -2,6 +2,7 @@
     <h1>Liste des Recettes</h1>
 
     <h4>Filtrage par catégorie</h4>
+    <!-- Formulaire pour filtrer les recettes par catégorie -->
     <form action="{{ route('recettes.index') }}" method="get">
         <select name="cat">
             <option value="All" @if($cat == 'All') selected @endif>-- Toutes catégories --</option>

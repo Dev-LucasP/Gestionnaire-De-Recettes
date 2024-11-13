@@ -6,8 +6,14 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RecetteFactory extends Factory
 {
+    // Le modèle associé à cette fabrique
     protected $model = \App\Models\Recette::class;
 
+    /**
+     * Définition de l'état par défaut du modèle.
+     *
+     * @return array
+     */
     public function definition()
     {
         return [
