@@ -14,7 +14,8 @@
         <!-- Affichage du coût de la recette -->
         <p><strong>Coût :</strong> {{ $recette->cout }}</p>
         <!-- Affichage de l'image de la recette -->
-        <img src="{{ Vite::asset('resources/images/' . $recette->nom . '.jpg') }}" alt="Image de {{ $recette->nom }}" style="width: 100px; height: 100px;">
+        <img src="{{ Vite::asset('public/storage/' . $recette->visuel) }}" alt="Image de {{ $recette->nom }}" style="width: 100px; height: 100px;">
+
     </div>
 
     <div>

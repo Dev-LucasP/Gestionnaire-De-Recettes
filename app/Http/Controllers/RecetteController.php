@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Recette;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Storage;
 
 class RecetteController extends Controller
 {
@@ -81,9 +82,16 @@ class RecetteController extends Controller
                 'nb_personnes' => 'required|integer|min:1', // Nombre de personnes
                 'temps_preparation' => 'required|integer|min:1', // Temps de préparation en minutes
                 'cout' => 'required|numeric|min:0', // Coût de la recette
+                'visuel' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // visuel de la recette
             ]);
 
-            $validated['visuel'] = $validated['nom'] . '.jpg';
+            // Vérifier et traiter le fichier téléversé
+            if ($request->hasFile('visuel') && $request->file('visuel')->isValid()) {
+                $file = $request->file('visuel');
+                $nom = sprintf("%s.jpg", $validated['nom']); // Nom de l’image basé sur le nom de la recette
+                $path = $file->storeAs('images', $nom, 'public'); // Stockage dans public/images
+                $validated['visuel'] = $path;
+            }
 
             // Création de la recette
             Recette::create($validated);
@@ -139,10 +147,27 @@ class RecetteController extends Controller
                 'nb_personnes' => 'required|integer|min:1', // Nombre de personnes
                 'temps_preparation' => 'required|integer|min:1', // Temps de préparation en minutes
                 'cout' => 'required|numeric|min:0', // Coût de la recette
+                'visuel' => 'file|mimes:jpeg,png,jpg,gif|max:2048' // Visuel de la recette
             ]);
 
             // Si la validation passe, on effectue la mise à jour
             $recette->update($validated);
+
+            // Gestion du visuel
+            if ($request->hasFile('visuel') && $request->file('visuel')->isValid()) {
+                $file = $request->file('visuel');
+                $filename = sprintf("%s_%d.%s", $recette->nom, time(), $file->extension());
+
+                // Supprime l'ancien visuel s'il existe
+                if ($recette->visuel) {
+                    Storage::delete($recette->visuel);
+                }
+
+                // Stocke le nouveau visuel
+                $file->storeAs('images', $filename);
+                $recette->visuel = 'images/' . $filename;
+                $recette->save();
+            }
 
             // Redirection en cas de succès de la validation et de l'update
             return redirect()->route('recettes.index')
@@ -169,4 +194,5 @@ class RecetteController extends Controller
         return redirect()->route('recettes.index')
             ->with('success', 'Recette supprimée avec succès.');
     }
+
 }

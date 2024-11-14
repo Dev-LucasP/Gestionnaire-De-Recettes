@@ -23,7 +23,7 @@
                 Nombre de personnes : {{ $recette->nb_personnes }}<br>
                 Temps de préparation : {{ $recette->temps_preparation }} minutes<br>
                 Coût : {{ $recette->cout }}<br>
-                <img src="{{ $recette->visuel }}" alt="Image de {{ $recette->nom }}" style="width: 100px; height: 100px;">
+                <img src="{{ Vite::asset('public/storage/' . $recette->visuel) }}" alt="Image de {{ $recette->nom }}" style="width: 100px; height: 100px;">
 
                 <!-- Bouton pour voir les détails de la recette -->
                 <a href="{{ route('recettes.show', $recette->id) }}" class="btn btn-info">Voir les détails</a>

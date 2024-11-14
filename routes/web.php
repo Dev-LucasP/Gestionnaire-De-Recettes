@@ -38,3 +38,8 @@ Route::put('/recettes/{recette}', [RecetteController::class, 'update'])->name('r
 
 // Route pour supprimer une recette
 Route::delete('/recettes/{recette}', [RecetteController::class, 'destroy'])->name('recettes.destroy');
+
+Route::resource('recettes', RecetteController::class);
+
+// Ajoute la route pour l'upload de visuel (si séparée)
+Route::post('/recettes/{id}/upload', [RecetteController::class, 'upload'])->name('recettes.upload');
