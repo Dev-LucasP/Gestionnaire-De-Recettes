@@ -1,26 +1,46 @@
-<x-app-layout>
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<x-app :titre="$titre">
+    <h1>Liste des Recettes</h1>
 
-    <title>Liste des recettes</title>
-</head>
-<body>
-<h2>La liste des recettes</h2>
+    <h4>Filtrage par catégorie</h4>
+    <!-- Formulaire pour filtrer les recettes par catégorie -->
+    <form action="{{ route('recettes.index') }}" method="get">
+        <select name="cat">
+            <option value="All" @if($cat == 'All') selected @endif>-- Toutes catégories --</option>
+            @foreach($categories as $categorie)
+                <option value="{{ $categorie }}" @selected($cat == $categorie)>{{ $categorie }}</option>
+            @endforeach
+        </select>
+        <input type="submit" value="OK">
+    </form>
 
-@if(!empty($recettes))
+    <h2>Recettes</h2>
     <ul>
-        @foreach($recettes as $recette)
+        @foreach ($recettes as $recette)
             <li>
-                {{$recette->nom}} {{$recette->description}} {{$recette->categorie}} {{$recette->visuel}} {{$recette->temps_preparation}} {{$recette->nb_personnes}} {{$recette->cout}}
+                <strong>{{ $recette->nom }}</strong><br>
+                Description : {{ $recette->description }}<br>
+                Catégorie : {{ $recette->categorie }}<br>
+                Nombre de personnes : {{ $recette->nb_personnes }}<br>
+                Temps de préparation : {{ $recette->temps_preparation }} minutes<br>
+                Coût : {{ $recette->cout }}<br>
+                <img src="{{ Vite::asset('public/storage/' . $recette->visuel) }}" alt="Image de {{ $recette->nom }}" style="width: 100px; height: 100px;">
+
+                <!-- Bouton pour voir les détails de la recette -->
+                <a href="{{ route('recettes.show', $recette->id) }}" class="btn btn-info">Voir les détails</a>
+
+                <!-- Bouton pour modifier la recette -->
+                <a href="{{ route('recettes.edit', $recette->id) }}" class="btn btn-primary">Modifier</a>
+
+                <!-- Formulaire pour supprimer la recette -->
+                <form action="{{ route('recettes.destroy', $recette->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
             </li>
         @endforeach
     </ul>
-@else
-    <h3>aucune recette</h3>
-@endif
-</body>
-</html>
-</x-app-layout>
+
+    <!-- Lien pour créer une nouvelle recette -->
+    <a href="{{ route('recettes.create') }}" class="btn btn-success">Créer une nouvelle recette</a>
+</x-app>

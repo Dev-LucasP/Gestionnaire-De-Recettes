@@ -9,8 +9,19 @@ class Recette extends Model
 {
     use HasFactory;
 
-    /*
-     * The attributes that are mass assignable.
+    /**
+     * Les attributs qui peuvent être assignés en masse.
+     *
+     * @var array
      */
-    protected $fillable = ['nom', 'description', 'categorie', 'visuel', 'temps_preparation', 'nb_personnes', 'cout', 'created_at', 'updated_at'];
+    protected $fillable = [
+        'nom',                // Le nom de la recette
+        'description',        // La description de la recette
+        'categorie',          // La catégorie de la recette
+        'visuel',             // La représentation visuelle (image) de la recette
+        'nb_personnes',       // Le nombre de personnes que la recette sert
+        'temps_preparation',  // Le temps de préparation de la recette
+        'cout',               // Le coût de la recette
+        'visuel'              // Le visuel de la recette
+    ];
 }
