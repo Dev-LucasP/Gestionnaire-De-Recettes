@@ -11,16 +11,11 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
-<<<<<<< HEAD
+
     public function run()
     {
         $this->call(RecetteSeeder::class);
     }
 
-=======
-    public function run(): void
-    {
-        $this->call(RecetteSeeder::class);
-    }
->>>>>>> origin/bug-affichage-recette
+
 }

@@ -1,4 +1,51 @@
 <x-app :titre="'Détails de la Recette : ' . $recette->nom">
+    <style>
+        /* Style général pour la page de détails */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+
+        /* Style pour les boutons et les liens */
+
+        button {
+            padding: 8px 15px;
+            background-color: #ff4d4d;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Style du formulaire de suppression */
+        form {
+            display: inline;
+        }
+
+        /* Mise en forme du conteneur pour la recette */
+        div {
+            margin-bottom: 20px;
+        }
+    </style>
+
     <!-- Titre de la page avec le nom de la recette -->
     <h1>{{ $recette->nom }}</h1>
 
@@ -14,8 +61,7 @@
         <!-- Affichage du coût de la recette -->
         <p><strong>Coût :</strong> {{ $recette->cout }}</p>
         <!-- Affichage de l'image de la recette -->
-        <img src="{{ Vite::asset('public/storage/' . $recette->visuel) }}" alt="Image de {{ $recette->nom }}" style="width: 100px; height: 100px;">
-
+        <img src="{{ Vite::asset('public/storage/' . $recette->visuel) }}" alt="Image de {{ $recette->nom }}">
     </div>
 
     <div>
