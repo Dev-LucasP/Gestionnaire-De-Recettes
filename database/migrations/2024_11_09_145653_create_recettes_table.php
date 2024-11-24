@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->integer('temps_preparation'); // Temps de préparation
             $table->integer('cout')->between(1, 5); // Fourchette de coût (1 à 5)
             $table->timestamps(); // Dates de création et de mise à jour
+            $table->foreignIdFor(User::class)->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

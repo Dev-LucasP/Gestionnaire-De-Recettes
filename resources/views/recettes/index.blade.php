@@ -154,6 +154,7 @@
                 Nombre de personnes : {{ $recette->nb_personnes }}<br>
                 Temps de préparation : {{ $recette->temps_preparation }} minutes<br>
                 Coût : {{ $recette->cout }}<br>
+                ID d'utilisateur : {{ $recette->user_id }}<br>
                 <img src="{{ Vite::asset('public/storage/' . $recette->visuel) }}" alt="Image de {{ $recette->nom }}" style="width: 100px; height: 100px;">
 
                 <!-- Bouton pour voir les détails de la recette -->

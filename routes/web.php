@@ -43,3 +43,14 @@ Route::resource('recettes', RecetteController::class);
 
 // Ajoute la route pour l'upload de visuel (si séparée)
 Route::post('/recettes/{id}/upload', [RecetteController::class, 'upload'])->name('recettes.upload');
+
+Route::get('/home', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('home');
+
+Route::middleware(['auth'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('home');
+
+
+Route::resource('recettes', RecetteController::class)->middleware('auth');

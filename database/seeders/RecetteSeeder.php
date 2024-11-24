@@ -2,19 +2,22 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Recette;
+use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class RecetteSeeder extends Seeder
 {
     /**
-     * Exécute les commandes de la base de données pour semer les données.
-     *
-     * @return void
+     * Run the database seeds.
      */
-    public function run()
+    public function run(): void
     {
-        // Crée 10 recettes aléatoires en utilisant la fabrique de modèles
-        Recette::factory()->count(10)->create();
+        $users_id = User::all()->pluck('id');
+        $recettes = Recette::factory()->count(10)->make();
+        $recettes->each(function ($recette) use ($users_id) {
+            $recette->user_id = $users_id->random();
+            $recette->save();
+        });
     }
 }

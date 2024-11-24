@@ -6,6 +6,7 @@ use App\Models\Recette;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class RecetteController extends Controller
 {
@@ -71,41 +72,44 @@ class RecetteController extends Controller
      * @param  \Illuminate\Http\Request  $request  La requête HTTP contenant les données de la recette.
      * @return \Illuminate\Http\RedirectResponse  La réponse HTTP redirigeant vers la liste des recettes.
      */
-    public function store(Request $request)
-    {
-        try {
-            // Valide les données entrées par l'utilisateur
-            $validated = $request->validate([
-                'nom' => 'required|string|max:255', // Nom de la recette
-                'description' => 'required|string', // Description de la recette
-                'categorie' => 'required|string', // Catégorie de la recette
-                'nb_personnes' => 'required|integer|min:1', // Nombre de personnes
-                'temps_preparation' => 'required|integer|min:1', // Temps de préparation en minutes
-                'cout' => 'required|numeric|min:0', // Coût de la recette
-                'visuel' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // visuel de la recette
-            ]);
+public function store(Request $request)
+{
+    try {
+        // Valide les données entrées par l'utilisateur
+        $validated = $request->validate([
+            'nom' => 'required|string|max:255', // Nom de la recette
+            'description' => 'required|string', // Description de la recette
+            'categorie' => 'required|string', // Catégorie de la recette
+            'nb_personnes' => 'required|integer|min:1', // Nombre de personnes
+            'temps_preparation' => 'required|integer|min:1', // Temps de préparation en minutes
+            'cout' => 'required|numeric|min:0', // Coût de la recette
+            'visuel' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // visuel de la recette
+        ]);
 
-            // Vérifier et traiter le fichier téléversé
-            if ($request->hasFile('visuel') && $request->file('visuel')->isValid()) {
-                $file = $request->file('visuel');
-                $nom = sprintf("%s.jpg", $validated['nom']); // Nom de l’image basé sur le nom de la recette
-                $path = $file->storeAs('images', $nom, 'public'); // Stockage dans public/images
-                $validated['visuel'] = $path;
-            }
-
-            // Création de la recette
-            Recette::create($validated);
-
-            return redirect()->route('recettes.index')
-                ->with('type', 'primary')
-                ->with('msg', 'Recette créée avec succès !');
+        // Vérifier et traiter le fichier téléversé
+        if ($request->hasFile('visuel') && $request->file('visuel')->isValid()) {
+            $file = $request->file('visuel');
+            $nom = sprintf("%s.jpg", $validated['nom']); // Nom de l’image basé sur le nom de la recette
+            $path = $file->storeAs('images', $nom, 'public'); // Stockage dans public/images
+            $validated['visuel'] = $path;
         }
-        catch (\Exception) {
-            return redirect()->route('recettes.index')
-                ->with('type', 'danger')
-                ->with('msg', 'Erreur lors de la création de la recette.');
-        }
+
+        // Ajouter l'ID de l'utilisateur
+        $validated['user_id'] = Auth::id();
+
+        // Création de la recette
+        Recette::create($validated);
+
+        return redirect()->route('recettes.index')
+            ->with('type', 'primary')
+            ->with('msg', 'Recette créée avec succès !');
     }
+    catch (\Exception $e) {
+        return redirect()->route('recettes.index')
+            ->with('type', 'danger')
+            ->with('msg', 'Erreur lors de la création de la recette.' . $e->getMessage());
+    }
+}
 
     /**
      * Affiche une recette spécifique.

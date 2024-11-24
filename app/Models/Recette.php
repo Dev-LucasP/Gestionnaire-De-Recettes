@@ -22,6 +22,13 @@ class Recette extends Model
         'nb_personnes',       // Le nombre de personnes que la recette sert
         'temps_preparation',  // Le temps de préparation de la recette
         'cout',               // Le coût de la recette
-        'visuel'              // Le visuel de la recette
+        'visuel',              // Le visuel de la recette
+        'user_id',            // L'identifiant de l'utilisateur qui a créé la recette
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }
