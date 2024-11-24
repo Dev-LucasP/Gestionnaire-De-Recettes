@@ -63,6 +63,7 @@ class RecetteController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Recette::class);
         return view('recettes.create');
     }
 
@@ -74,6 +75,7 @@ class RecetteController extends Controller
      */
 public function store(Request $request)
 {
+    $this->authorize('create', Recette::class);
     try {
         // Valide les données entrées par l'utilisateur
         $validated = $request->validate([
@@ -130,6 +132,7 @@ public function store(Request $request)
      */
     public function edit(Recette $recette)
     {
+        $this->authorize('update', $recette);
         return view('recettes.edit', compact('recette'));
     }
 
@@ -142,6 +145,7 @@ public function store(Request $request)
      */
     public function update(Request $request, Recette $recette)
     {
+        $this->authorize('update', $recette);
         try {
             // Valide les données entrées par l'utilisateur
             $validated = $request->validate([
@@ -193,6 +197,8 @@ public function store(Request $request)
      */
     public function destroy(Recette $recette)
     {
+        $this->authorize('delete', $recette);
+
         $recette->delete();
 
         return redirect()->route('recettes.index')

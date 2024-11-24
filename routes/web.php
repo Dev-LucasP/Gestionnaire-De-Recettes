@@ -27,3 +27,9 @@ Route::middleware(['auth'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('home');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/recettes/create', [RecetteController::class, 'create'])->name('recettes.create');
+    Route::post('/recettes', [RecetteController::class, 'store'])->name('recettes.store');
+});
+
+

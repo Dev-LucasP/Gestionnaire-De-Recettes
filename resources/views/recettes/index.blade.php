@@ -161,18 +161,24 @@
                 <a href="{{ route('recettes.show', $recette->id) }}" class="btn btn-info">Voir les détails</a>
 
                 <!-- Bouton pour modifier la recette -->
-                <a href="{{ route('recettes.edit', $recette->id) }}" class="btn btn-primary">Modifier</a>
+                @can('update', $recette)
+                    <a href="{{ route('recettes.edit', $recette->id) }}" class="btn btn-primary">Modifier</a>
+                @endcan
 
                 <!-- Formulaire pour supprimer la recette -->
-                <form action="{{ route('recettes.destroy', $recette->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Supprimer</button>
-                </form>
+                @can('delete', $recette)
+                    <form action="{{ route('recettes.destroy', $recette->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </form>
+                @endcan
             </li>
         @endforeach
     </ul>
 
     <!-- Lien pour créer une nouvelle recette -->
-    <a href="{{ route('recettes.create') }}" class="btn btn-success">Créer une nouvelle recette</a>
+    @can('create', Recette::class)
+        <a href="{{ route('recettes.create') }}" class="btn btn-success">Créer une nouvelle recette</a>
+    @endcan
 </x-app>

@@ -2,23 +2,37 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Enums\Role;
+use App\Models\Recette;
+use App\Models\SuiviExecution;
+use App\Policies\RecettePolicy;
+use App\Policies\SuiviExecutionPolicy;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+
     /**
-     * Register any application services.
+     * The policy mappings for the application.
+     *
+     * @var array
      */
-    public function register(): void
-    {
-        //
-    }
+    protected $policies = [
+        Recette::class => RecettePolicy::class,
+    ];
 
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot()
     {
-        //
+        $this->registerPolicies();
+
+        Gate::before(function ($user) {
+            if ($user->role === Role::ADMIN) {
+                return true;
+            }
+        });
     }
 }
