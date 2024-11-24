@@ -4,6 +4,10 @@
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf
     </form>
+    <button><a href="/" id="logout">Accueil</a></button>
+    <form id="logout-form" action="{{ route('accueil') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
 </div>
 <script>
     document.getElementById('logout').addEventListener("click", (event) => {
