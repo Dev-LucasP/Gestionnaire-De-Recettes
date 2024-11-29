@@ -11,9 +11,10 @@ use Illuminate\Support\Str;
 class UsersSeeder extends Seeder {
 
     public function run(): void {
+        $faker = \Faker\Factory::create();
         User::factory([
             'name' => "Robert Duchmol",
-            'email' => "robert.duchmol@domain.fr",
+            'email' => $faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password' => Hash::make('GrosSecret'),
             'remember_token' => Str::random(10),
@@ -21,7 +22,7 @@ class UsersSeeder extends Seeder {
         ])->create();
         User::factory([
             'name' => "Gérard Martin",
-            'email' => "gerard.martin@domain.fr",
+            'email' => $faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password' => Hash::make('GrosSecret'),
             'remember_token' => Str::random(10),
