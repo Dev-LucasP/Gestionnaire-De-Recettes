@@ -1,0 +1,65 @@
+/* Style général */
+
+.create-recette h1 {
+    text-align: center;
+    color: #4caf50;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/* Formulaire de création */
+.create-recette form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    margin: 0 auto;
+    font-size: 1rem;
+}
+
+.create-recette .form-group {
+    margin-bottom: 15px;
+}
+
+.create-recette .form-group label {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+}
+
+.create-recette .form-group input,
+.create-recette .form-group textarea,
+.create-recette .form-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.create-recette .form-group textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.create-recette .form-group input[type="file"] {
+    padding: 5px;
+}
+
+.create-recette button[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.create-recette button[type="submit"]:hover {
+    background-color: #45a049;
+}

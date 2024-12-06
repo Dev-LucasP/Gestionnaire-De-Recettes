@@ -1,0 +1,64 @@
+/* Main title */
+.index-ingredient h1 {
+    text-align: center;
+    color: #4caf50;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Ingredient list container */
+.index-ingredient .ingredient-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Ingredient list container */
+.index-ingredient strong {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: bold;
+    margin: 10px;
+    display: block; /* Make title a block element */
+}
+
+/* Ingredient list items */
+.index-ingredient li {
+    list-style-type: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 0.5rem;
+}
+
+/* Hover effect for ingredient items */
+.index-ingredient li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* CSS for buttons */
+.index-ingredient .btn {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1rem;
+    margin: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    display: inline-block;
+    text-align: center;
+}
+
+.index-ingredient .btn-success {
+    background-color: #4caf50;
+}
+
+.index-ingredient .btn-success:hover {
+    background-color: #388e3c;
+}

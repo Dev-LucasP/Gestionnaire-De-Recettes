@@ -1,0 +1,17 @@
+/* ingredient.css */
+
+/* Style for the ingredient container */
+.ingredient {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #f5f5f5;
+}
+
+/* Style for the ingredient list item */
+.ingredient li {
+    list-style-type: none;
+    font-size: 1rem;
+    color: #333;
+}

@@ -6,7 +6,16 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    @vite(['resources/css/app.css']) <!-- Gère le fichier CSS avec Vite -->
+    <link rel="stylesheet" href="{{ asset('css/accueil.css') }}"> <!-- Include the accueil.css file -->
+    <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/recette.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/ingredient.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/index-recette.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/index-ingredient.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/create-recette.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/show-recette.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/edit-recette.css') }}">
+    @vite(['resources/css/app.css']) <!-- Manage the CSS files with Vite -->
     <title>{{ $titre ?? "Les recettes de MamyLens" }}</title>
 </head>
 <body>

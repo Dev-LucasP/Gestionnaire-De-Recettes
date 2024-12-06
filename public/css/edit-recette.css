@@ -1,0 +1,83 @@
+.edit-recette h2 {
+    text-align: center;
+    color: #4caf50;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Formulaire de modification */
+.edit-recette form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    margin: 0 auto;
+    font-size: 1rem;
+}
+
+.edit-recette .form-group {
+    margin-bottom: 15px;
+}
+
+.edit-recette .form-group label {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+}
+
+.edit-recette .form-group input,
+.edit-recette .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.edit-recette .form-group textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.edit-recette .form-group input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.edit-recette .form-group input[type="file"] {
+    padding: 5px;
+}
+
+.edit-recette button[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.edit-recette button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Visuel actuel */
+.edit-recette .current-image {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.edit-recette .current-image img {
+    max-width: 200px;
+    border-radius: 5px;
+}
+
+.edit-recette .centered-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

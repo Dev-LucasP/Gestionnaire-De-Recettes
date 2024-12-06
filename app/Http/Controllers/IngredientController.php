@@ -2,64 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ingredient;
-use Illuminate\Http\Request;
+use App\Repositories\IIngredientRepository;
 
 class IngredientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private IIngredientRepository $ingredientRepository;
+
+    public function __construct(IIngredientRepository $ingredientRepository)
+    {
+        $this->ingredientRepository = $ingredientRepository;
+    }
+
     public function index()
     {
-        //
+        $ingredients = $this->ingredientRepository->all();
+        $titre = 'Liste des Ingrédients';
+        return view('ingredients.index', compact('ingredients', 'titre'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show($id)
     {
-        //
+        $ingredient = $this->ingredientRepository->find($id);
+        return view('ingredients.show', compact('ingredient'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Ingredient $ingredient)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Ingredient $ingredient)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Ingredient $ingredient)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Ingredient $ingredient)
-    {
-        //
-    }
+    // Ajoute d'autres méthodes pour créer, mettre à jour, supprimer...
 }

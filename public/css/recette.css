@@ -1,0 +1,118 @@
+/* recette.css */
+
+/* Parent container for recette components */
+.recette-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Create a responsive grid */
+    gap: 30px; /* Add spacing between grid items */
+    justify-items: center; /* Center the items horizontally */
+    padding: 20px;
+}
+
+/* Style for the recette container (card) */
+.recette {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    height: 500px; /* Set a fixed height */
+    max-width: 320px; /* Set a maximum width */
+    overflow-y: auto; /* Add scroll if content overflows */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for a card effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation on hover */
+}
+
+/* Hover effect for the recipe card */
+.recette:hover {
+    transform: translateY(-5px); /* Lift the card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+/* Style for the recette list item */
+.recette li {
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
+/* Style for the recette title */
+.recette strong {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: bold;
+    margin: 10px;
+    display: block; /* Make title a block element */
+}
+
+/* Style for the ingredients list */
+.recette .ingredients {
+    padding-left: 20px;
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Style for the ingredient items */
+.recette .ingredients .ingredient {
+    margin-bottom: 8px;
+    line-height: 1.5; /* Better spacing between ingredient items */
+}
+
+/* Style for the buttons */
+.recette .btn {
+    display: inline-block;
+    padding: 12px 18px;
+    margin-top: 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.recette .btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Button lift effect on hover */
+}
+
+.recette .btn-info {
+    background-color: #17a2b8;
+}
+
+.recette .btn-info:hover {
+    background-color: #138496;
+}
+
+.recette .btn-primary {
+    background-color: #007bff;
+}
+
+.recette .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.recette .btn-danger {
+    background-color: #dc3545;
+}
+
+.recette .btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Style for the image */
+.recette img {
+    display: block;
+    margin-top: 15px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease; /* Add smooth zoom effect */
+}
+
+/* Image zoom effect on hover */
+.recette img:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}

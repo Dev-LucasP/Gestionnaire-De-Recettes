@@ -1,0 +1,57 @@
+/* Titre principal */
+.index-recette h1 {
+    text-align: center;
+    color: #4caf50;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Formulaire de filtrage */
+.index-recette form {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.index-recette form select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.index-recette form input[type="submit"] {
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.index-recette form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* CSS for buttons */
+.index-recette .btn {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1rem;
+    margin: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    display: inline-block;
+    text-align: center;
+}
+
+.index-recette .btn-success {
+    background-color: #4caf50;
+}
+
+.index-recette .btn-success:hover {
+    background-color: #388e3c;
+}

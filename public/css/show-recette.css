@@ -1,0 +1,85 @@
+/* Style pour le titre principal */
+.show-recette h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Style pour les paragraphes */
+.show-recette p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* Style pour les éléments en gras */
+.show-recette strong {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Style pour les images de la recette */
+.show-recette img {
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+    border-radius: 8px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Style pour les boutons et les liens */
+.show-recette button {
+    padding: 10px 20px;
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect for delete button */
+.show-recette button:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+/* Style pour les liens */
+.show-recette a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1.2rem;
+    margin: 0 10px;
+}
+
+/* Style pour les liens au survol */
+.show-recette a:hover {
+    text-decoration: underline;
+}
+
+/* Mise en forme du conteneur pour la recette */
+.show-recette div {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+/* Style du formulaire de suppression */
+.show-recette form {
+    display: inline;
+}
+
+/* Style pour la section des actions */
+.show-recette .actions {
+    text-align: center;
+    margin-top: 20px;
+}

@@ -27,18 +27,13 @@ class RecettePolicy
         return null;
     }
 
-    public function create(User $user): bool
-    {
-        return $user !== null;
-    }
-
     public function update(User $user, Recette $recette): bool
     {
         return $user->id === $recette->user_id;
     }
 
-    public function delete(User $user): bool
+    public function delete(User $user, Recette $recette): bool
     {
-        return $user->role === Role::ADMIN;
+        return $user->id === $recette->user_id;
     }
 }

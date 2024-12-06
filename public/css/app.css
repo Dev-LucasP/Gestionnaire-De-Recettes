@@ -1,3 +1,11 @@
+:root {
+    --primary-color: #FFFFFF;
+    --secondary-color: #FF6F61;
+    --danger-color: #FF6347;
+    --light-color: #F9F9F9;
+    --dark-color: #343a40;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +17,7 @@ body {
     font-family: Arial, sans-serif;
     color: #343a40;
     height: 100vh;
+    background-color: #EFEFEF;
 
     display: grid;
     grid-template-columns: 300px 1fr 200px;
@@ -16,32 +25,44 @@ body {
 }
 
 nav {
-    background-color: #69db7c;
+    background-color: var(--primary-color);
     grid-column: 1 / -1;
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 0 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.left-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.right-buttons {
+    display: flex;
+    gap: 12px;
+    margin-left: auto; /* Add this line */
 }
 
 nav button {
     display: inline-block;
     font-size: 16px;
     font-weight: bold;
-    background-color: #37b24d;
+    background-color: var(--secondary-color);
     border: none;
     cursor: pointer;
     color: #fff;
     padding: 6px 10px;
+    border-radius: 8px;
 }
 
 nav button a {
     text-decoration: none;
 }
 
-nav button:last-child {
-    background-color: #d6336c;
-    margin-left: auto;
+nav button.auth-button {
+    background-color: var(--danger-color);
 }
 
 main {
@@ -52,7 +73,7 @@ main {
 
 aside {
     grid-column: 3 / -1;
-    background-color: #e9ecef;
+    background-color: var(--light-color);
     text-align: center;
 }
 
@@ -61,10 +82,12 @@ aside .in-aside {
 }
 
 footer {
+    background: var(--secondary-color);
     grid-column: 1 / -1;
     display: flex;
     justify-content: center;
-    margin-top: 24px;
+    align-items: center;
+    margin-top: 0px;
 }
 
 .centered-image {
