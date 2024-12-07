@@ -1,4 +1,3 @@
-<!-- resources/views/components/ingredient.blade.php -->
 @props(['ingredient'])
 
 <div class="ingredient">

@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     /**
      * Run the migrations.
+     *
+     * This method adds a new 'role' column to the 'users' table. The 'role' column is an enum
+     * with possible values 'admin', 'user', and 'visiteur', and it defaults to 'user'.
      */
     public function up(): void {
         Schema::table('users', function (Blueprint $table) {
@@ -18,6 +21,8 @@ return new class extends Migration {
 
     /**
      * Reverse the migrations.
+     *
+     * This method removes the 'role' column from the 'users' table.
      */
     public function down(): void {
         Schema::table('users', function (Blueprint $table) {

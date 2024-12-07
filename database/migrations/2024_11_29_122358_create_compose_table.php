@@ -8,6 +8,8 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * This method creates the 'compose' table with the specified columns and constraints.
      */
     public function up(): void
     {
@@ -17,7 +19,6 @@ return new class extends Migration
             $table->float('quantite');
             $table->string('observation')->nullable();
 
-            // Clés étrangères
             $table->foreign('recette_id')->references('id')->on('recettes')->onDelete('cascade');
             $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('cascade');
 
@@ -27,6 +28,8 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     *
+     * This method drops the 'compose' table.
      */
     public function down(): void
     {

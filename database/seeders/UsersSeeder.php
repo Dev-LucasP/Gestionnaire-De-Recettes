@@ -10,8 +10,14 @@ use Illuminate\Support\Str;
 
 class UsersSeeder extends Seeder {
 
+    /**
+     * Run the database seeds.
+     *
+     * This method seeds the 'users' table with predefined and random user data.
+     */
     public function run(): void {
         $faker = \Faker\Factory::create();
+
         User::factory([
             'name' => "Robert Duchmol",
             'email' => $faker->unique()->safeEmail,
@@ -20,6 +26,7 @@ class UsersSeeder extends Seeder {
             'remember_token' => Str::random(10),
             'role' => Role::ADMIN,
         ])->create();
+
         User::factory([
             'name' => "Gérard Martin",
             'email' => $faker->unique()->safeEmail,
@@ -28,6 +35,8 @@ class UsersSeeder extends Seeder {
             'remember_token' => Str::random(10),
             'role' => Role::USER,
         ])->create();
+
+        // Create 3 additional random users
         User::factory(3)->create();
     }
 }

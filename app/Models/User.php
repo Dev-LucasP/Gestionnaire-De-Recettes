@@ -3,12 +3,18 @@
 namespace App\Models;
 
 use App\Enums\Role;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * Class User
+ *
+ * This model represents a user in the application.
+ *
+ * @package App\Models
+ */
 class User extends Authenticatable {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -46,7 +52,11 @@ class User extends Authenticatable {
         ];
     }
 
-
+    /**
+     * Get the recipes that belong to the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function recettes() {
         return $this->hasMany(Recette::class);
     }

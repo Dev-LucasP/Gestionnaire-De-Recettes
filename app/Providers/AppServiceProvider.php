@@ -14,9 +14,16 @@ use App\Repositories\RecetteRepository;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
+/**
+ * Class AppServiceProvider
+ *
+ * This service provider is responsible for binding interfaces to implementations
+ * and registering policies and gates for the application.
+ *
+ * @package App\Providers
+ */
 class AppServiceProvider extends ServiceProvider
 {
-
     /**
      * The policy mappings for the application.
      *
@@ -26,15 +33,21 @@ class AppServiceProvider extends ServiceProvider
         Recette::class => RecettePolicy::class,
     ];
 
+    /**
+     * Register any application services.
+     *
+     * This method binds interfaces to their respective implementations.
+     */
     public function register()
     {
-        // Lier l'interface à l'implémentation
         $this->app->bind(IRecetteRepository::class, RecetteRepository::class);
         $this->app->bind(IIngredientRepository::class, IngredientRepository::class);
     }
 
     /**
      * Bootstrap any application services.
+     *
+     * This method registers policies and defines a gate that grants all permissions to admin users.
      */
     public function boot()
     {

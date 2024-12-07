@@ -5,7 +5,6 @@
 
         <form action="{{ route('ingredients.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <!-- Nom de la recette -->
             <div class="form-group">
                 <label for="nom">Nom de l'ingrédient :</label>
                 <input type="text" id="nom" name="nom" required>

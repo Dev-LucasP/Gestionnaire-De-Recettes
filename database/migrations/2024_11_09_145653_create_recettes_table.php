@@ -8,26 +8,30 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Exécute les migrations.
+     * Run the migrations.
+     *
+     * This method creates the 'recettes' table with the specified columns and constraints.
      */
     public function up()
     {
         Schema::create('recettes', function (Blueprint $table) {
-            $table->id(); // Identifiant unique
-            $table->string('nom'); // Nom de la recette
-            $table->text('description'); // Description de la recette
-            $table->string('categorie'); // Catégorie (entrée, plat, dessert, ...)
-            $table->string('visuel'); // Nom du fichier image
-            $table->integer('nb_personnes'); // Nombre de personnes
-            $table->integer('temps_preparation'); // Temps de préparation
-            $table->integer('cout')->between(1, 5); // Fourchette de coût (1 à 5)
-            $table->timestamps(); // Dates de création et de mise à jour
+            $table->id();
+            $table->string('nom');
+            $table->text('description');
+            $table->string('categorie');
+            $table->string('visuel');
+            $table->integer('nb_personnes');
+            $table->integer('temps_preparation');
+            $table->integer('cout')->between(1, 5);
+            $table->timestamps();
             $table->foreignIdFor(User::class)->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
     /**
-     * Annule les migrations.
+     * Reverse the migrations.
+     *
+     * This method drops the 'recettes' table.
      */
     public function down(): void
     {

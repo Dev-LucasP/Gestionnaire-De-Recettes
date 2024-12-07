@@ -1,4 +1,3 @@
-<!-- resources/views/components/recette.blade.php -->
 @props(['recette'])
 
 <div class="recette">
@@ -18,15 +17,12 @@
         </ul>
         <img src="{{ Vite::asset('public/storage/' . $recette->visuel) }}" alt="Image de {{ $recette->nom }}" style="width: 100px; height: 100px;">
 
-        <!-- Bouton pour voir les détails de la recette -->
         <a href="{{ route('recettes.show', $recette->id) }}" class="btn btn-info">Voir les détails</a>
 
-        <!-- Bouton pour modifier la recette -->
         @can('update', $recette)
             <a href="{{ route('recettes.edit', $recette->id) }}" class="btn btn-primary">Modifier</a>
         @endcan
 
-        <!-- Formulaire pour supprimer la recette -->
         @can('delete', $recette)
             <form action="{{ route('recettes.destroy', $recette->id) }}" method="POST" style="display:inline;">
                 @csrf

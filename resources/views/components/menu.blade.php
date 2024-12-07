@@ -1,18 +1,15 @@
 <nav>
-    <!-- Pages accessibles par tous -->
     <div class="left-buttons">
         <button><a href="{{ route('accueil') }}">🏛 Accueil</a></button>
         <button><a href="{{ route('presentation') }}">❔ À propos</a></button>
         <button><a href="{{ route('contact') }}">☎️ Contacts</a></button>
 
-        <!-- Pages accessibles uniquement par les utilisateurs connectés -->
         @auth
             <button><a href="{{ route('recettes.index') }}">📜 Recettes</a></button>
             <button><a href="{{ route('ingredients.index') }}">📜 Ingrédients</a></button>
         @endauth
     </div>
 
-    <!-- Menu connexion / déconnexion -->
     <div class="right-buttons">
         @guest
             <button class="auth-button"><a href="{{ route('register') }}">📥 Enregistrement</a></button>

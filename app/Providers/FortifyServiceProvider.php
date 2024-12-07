@@ -13,6 +13,13 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 
+/**
+ * Class FortifyServiceProvider
+ *
+ * This service provider is responsible for configuring Fortify's actions and rate limiting.
+ *
+ * @package App\Providers
+ */
 class FortifyServiceProvider extends ServiceProvider
 {
     /**
@@ -25,6 +32,8 @@ class FortifyServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
+     *
+     * This method configures Fortify's actions and rate limiting.
      */
     public function boot(): void
     {

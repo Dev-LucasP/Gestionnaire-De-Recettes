@@ -136,11 +136,9 @@
             <h3>Connexion</h3>
             <p>Accès au tableau de bord</p>
         </div>
-        <!--Email Input-->
         <div class="form-group">
             <input type="text" name="email" class="form-input" placeholder="email@example.com">
         </div>
-        <!--Password Input-->
         <div class="form-group">
             <input type="password" name="password" class="form-input" placeholder="password">
         </div>
@@ -149,7 +147,6 @@
                 <input type="checkbox" name="remember"> Rester connecté
             </label>
         </div>
-        <!--Login Button-->
         <div class="form-group">
             <button class="form-button" type="submit">Login</button>
         </div>
@@ -157,4 +154,4 @@
             Vous n'avez pas de compte ? <a href="{{route('register')}}">Enregistrement</a>
         </div>
     </form>
-</div><!--/.wrap-->
+</div>

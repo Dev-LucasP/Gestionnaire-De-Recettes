@@ -7,23 +7,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-//        Schema::table('recettes', function (Blueprint $table) {
-//            $table->foreignIdFor(User::class)
-//                ->nullable()
-//                ->default(null)
-//                ->comment('Identifiant de l\'utilisateur qui a créé la tâche')
-//                ->onUpdate('cascade')
-//                ->onDelete('set null');
-//        });
+        //
     }
 
     /**
      * Reverse the migrations.
+     *
+     * This method removes the 'user_id' column and its foreign key constraint from the 'recettes' table.
      */
     public function down(): void
     {

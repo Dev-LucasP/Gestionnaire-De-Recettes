@@ -5,19 +5,16 @@
 
         <form action="{{ route('recettes.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <!-- Nom de la recette -->
             <div class="form-group">
                 <label for="nom">Nom de la recette :</label>
                 <input type="text" id="nom" name="nom" required>
             </div>
 
-            <!-- Description de la recette -->
             <div class="form-group">
                 <label for="description">Description :</label>
                 <textarea id="description" name="description" required></textarea>
             </div>
 
-            <!-- Catégorie -->
             <div class="form-group">
                 <label for="categorie">Catégorie :</label>
                 <select id="categorie" name="categorie" required>
@@ -27,25 +24,21 @@
                 </select>
             </div>
 
-            <!-- Nombre de personnes -->
             <div class="form-group">
                 <label for="nb_personnes">Nombre de personnes :</label>
                 <input type="number" id="nb_personnes" name="nb_personnes" min="1" required>
             </div>
 
-            <!-- Temps de préparation -->
             <div class="form-group">
                 <label for="temps_preparation">Temps de préparation (minutes) :</label>
                 <input type="number" id="temps_preparation" name="temps_preparation" min="1" required>
             </div>
 
-            <!-- Coût -->
             <div class="form-group">
                 <label for="cout">Coût (€) :</label>
                 <input type="number" id="cout" name="cout" step="0.01" min="0" required>
             </div>
 
-            <!-- Choix du visuel -->
             <div class="form-group">
                 <label for="visuel">Visuel :</label>
                 <input type="file" id="visuel" name="visuel" accept="image/*">

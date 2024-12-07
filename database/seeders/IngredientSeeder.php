@@ -10,6 +10,9 @@ class IngredientSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * This method uses the Ingredient factory to create 20 instances of the Ingredient model
+     * and inserts them into the database.
      */
     public function run(): void
     {

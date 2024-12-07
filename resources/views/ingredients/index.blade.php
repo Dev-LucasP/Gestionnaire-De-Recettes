@@ -9,7 +9,6 @@
             @endforeach
         </ul>
 
-        <!-- Lien pour créer un nouvel ingrédient -->
         <a href="{{ route('ingredients.create') }}" class="btn btn-success">Créer un nouvel ingrédient</a>
     </div>
 </x-app>
