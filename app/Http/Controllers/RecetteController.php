@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ingredient;
 use App\Models\Recette;
 use App\Repositories\IRecetteRepository;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -57,7 +58,8 @@ public function index(Request $request)
 
     public function create()
     {
-        return view('recettes.create', [
+        $ingredients = Ingredient::all();
+        return view('recettes.create', compact('ingredients'), [
             'titre' => 'Liste des Recettes'
         ]);
     }
@@ -84,7 +86,15 @@ public function index(Request $request)
 
             $validated['user_id'] = Auth::id();
 
-            $this->recetteRepository->create($validated);
+            $recette = $this->recetteRepository->create($validated);
+
+            // Gestion des ingrédients associés
+            $recette->ingredients()->detach(); // Détache tous les ingrédients existants
+
+            $ingredients = $request->input('ingredients', []);
+            foreach ($ingredients as $ingredient_id) {
+                $recette->ingredients()->attach($ingredient_id, ['quantite' => rand(1, 10)]);
+            }
 
             return redirect()->route('recettes.index')
                 ->with('type', 'primary')
@@ -104,15 +114,22 @@ public function index(Request $request)
     public function edit(Recette $recette)
     {
         $this->authorize('update', $recette);
-        return view('recettes.edit', compact('recette'), [
-        'titre' => 'Liste des Recettes'
+
+        // Charger tous les ingrédients disponibles
+        $ingredients = Ingredient::all();
+
+        return view('recettes.edit', compact('recette', 'ingredients'), [
+            'titre' => 'Liste des Recettes'
         ]);
     }
+
 
     public function update(Request $request, Recette $recette)
     {
         $this->authorize('update', $recette);
+
         try {
+            // Validation des données
             $validated = $request->validate([
                 'nom' => 'required|string|max:255',
                 'description' => 'required|string',
@@ -123,8 +140,20 @@ public function index(Request $request)
                 'visuel' => 'file|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
+            // Mise à jour des champs de la recette
             $this->recetteRepository->update($recette->id, $validated);
 
+            // Gestion des ingrédients associés
+            $recette->ingredients()->detach(); // Détache tous les ingrédients existants
+
+            $ingredients = $request->input('ingredients', []);
+
+            foreach ($ingredients as $ingredient_id) {
+                $recette->ingredients()->attach($ingredient_id, ['quantite' => rand(1, 10)]);
+            }
+
+
+            // Gestion du visuel
             if ($request->hasFile('visuel') && $request->file('visuel')->isValid()) {
                 $file = $request->file('visuel');
                 $filename = sprintf("%s_%d.%s", $recette->nom, time(), $file->extension());
@@ -141,12 +170,13 @@ public function index(Request $request)
             return redirect()->route('recettes.index')
                 ->with('type', 'primary')
                 ->with('msg', 'Recette modifiée avec succès !');
-        } catch (\Exception) {
+        } catch (\Exception $e) {
             return redirect()->route('recettes.index')
                 ->with('type', 'danger')
-                ->with('msg', 'Erreur lors de l\'ajout de la recette.');
+                ->with('msg', 'Erreur lors de l\'ajout de la recette: ' . $e->getMessage());
         }
     }
+
 
     public function destroy(Recette $recette)
     {

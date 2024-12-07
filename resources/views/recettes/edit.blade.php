@@ -41,8 +41,25 @@
                 <input type="file" name="visuel" id="visuel">
             </div>
 
+            <fieldset style="border: 2px dashed cornflowerblue">
+                <legend>Édition des ingrédients</legend>
+                @foreach ($ingredients as $ingredient)
+                    <div>
+                        <input
+                            type="checkbox"
+                            name="ingredients[]"
+                            value="{{ $ingredient->id }}"
+                            id="ingredient-{{ $ingredient->id }}"
+                            @if ($recette->ingredients->contains($ingredient->id)) checked @endif
+                        >
+                        <label for="ingredient-{{ $ingredient->id }}">{{ $ingredient->nom }}</label>
+                    </div>
+                @endforeach
+            </fieldset>
+
             <button type="submit">Mettre à jour</button>
         </form>
+
 
         @if ($recette->visuel)
             <div class="current-image">
