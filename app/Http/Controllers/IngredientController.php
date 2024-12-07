@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\IIngredientRepository;
+use Illuminate\Http\Request;
 
 class IngredientController extends Controller
 {
@@ -26,5 +27,28 @@ class IngredientController extends Controller
         return view('ingredients.show', compact('ingredient'));
     }
 
-    // Ajoute d'autres méthodes pour créer, mettre à jour, supprimer...
+    public function create()
+    {
+        $titre = 'Créer un nouvel Ingrédient';
+        return view('ingredients.create', compact('titre'));
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'nom' => 'required|string|max:255',
+        ]);
+
+        try {
+            $this->ingredientRepository->create($validated);
+
+            return redirect()->route('ingredients.index')
+                ->with('type', 'primary')
+                ->with('msg', 'Ingrédient créé avec succès !');
+        } catch (\Exception $e) {
+            return redirect()->route('ingredients.index')
+                ->with('type', 'danger')
+                ->with('msg', 'Erreur lors de la création de l\'ingrédient: ' . $e->getMessage());
+        }
+    }
 }

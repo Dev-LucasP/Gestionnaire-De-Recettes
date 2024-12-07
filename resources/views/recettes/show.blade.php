@@ -15,7 +15,14 @@
             <p><strong>Temps de préparation :</strong> {{ $recette->temps_preparation }} minutes</p>
             <!-- Affichage du coût de la recette -->
             <p><strong>Coût :</strong> {{ $recette->cout }}</p>
+            <p><strong>Liste des ingrédients :</strong></p>
+            <ul class="ingredients">
+                @foreach ($recette->ingredients as $ingredient)
+                    <x-ingredient :ingredient="$ingredient" />
+                @endforeach
+            </ul>
             <!-- Affichage de l'image de la recette -->
+            <p><strong>Visuel de la recette :</strong></p>
             <img src="{{ Vite::asset('public/storage/' . $recette->visuel) }}" alt="Image de {{ $recette->nom }}">
         </div>
 
