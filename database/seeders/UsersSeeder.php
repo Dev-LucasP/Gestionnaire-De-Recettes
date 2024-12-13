@@ -20,7 +20,7 @@ class UsersSeeder extends Seeder {
 
         User::factory([
             'name' => "Robert Duchmol",
-            'email' => $faker->unique()->safeEmail,
+            'email' => "robert.duchmol@domain.fr",
             'email_verified_at' => now(),
             'password' => Hash::make('GrosSecret'),
             'remember_token' => Str::random(10),
@@ -29,7 +29,7 @@ class UsersSeeder extends Seeder {
 
         User::factory([
             'name' => "Gérard Martin",
-            'email' => $faker->unique()->safeEmail,
+            'email' => "gerard.martin@domain.fr",
             'email_verified_at' => now(),
             'password' => Hash::make('GrosSecret'),
             'remember_token' => Str::random(10),
