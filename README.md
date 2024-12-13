@@ -53,5 +53,29 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 ## Lancer l'application
 
 Pour lancer l'application en local, utilisez la commande suivante :
-
+    
+    npm run dev
+    npm run build
     php artisan serve
+
+Il ne reste plus qu'à accèder au site et à vous connecter ou à vous inscrire pour commencer à utiliser l'application.
+
+## Tâches
+
+Ce tableau récapitule les tâches réalisées dans le cadre du projet (il est possible qu'il en manque) :
+
+| Tâche                                                                         | Réalisé ? |
+|-------------------------------------------------------------------------------|-----------|
+| **Introduction du CRUD dans le projet.**                                      | ✅         |
+| **Utilisation de Vite pour gérer les ressources statiques.**                  | ✅         |
+| **Afficher un message d’information.**                                        | ✅         |
+| **Possibilité d'importer une image pour le visuel de la recette**             | ✅         |
+| **Mise en place l’authentification**                                          | ✅         |
+| **Gestion des droits d’accès**                                                | ✅         |
+| **Vérification du mail**                                                      | ❌         |
+| **Introduction du patron de conception Repository**                           | ✅         |
+| **Possibilité de créer un ingrédient**                                        | ✅         |
+| **Possibilité d'ajouter/modifier les ingrédients dans une recette**           | ✅         |
+| **Possibilité d'ajouter/modifier la quantité d'un ingrédient dans une recette** | ✅         |
+| **Utiliser des composants pour les recettes, ingrédients, ect.**              | ✅         |
+
