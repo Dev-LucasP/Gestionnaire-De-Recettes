@@ -19,7 +19,7 @@
                 <label for="categorie">Catégorie :</label>
                 <select id="categorie" name="categorie" required>
                     <option value="dessert">Dessert</option>
-                    <option value="plat principal">Plat Principal</option>
+                    <option value="plat">Plat</option>
                     <option value="entrée">Entrée</option>
                 </select>
             </div>
@@ -50,11 +50,21 @@
                     <div>
                         <input
                             type="checkbox"
-                            name="ingredients[]"
+                            name="ingredients[{{ $ingredient->id }}][id]"
                             value="{{ $ingredient->id }}"
                             id="ingredient-{{ $ingredient->id }}"
+                            onchange="toggleQuantityInput(this)"
                         >
                         <label for="ingredient-{{ $ingredient->id }}">{{ $ingredient->nom }}</label>
+                        <input
+                            type="number"
+                            name="ingredients[{{ $ingredient->id }}][quantite]"
+                            min="1"
+                            value="''"
+                            placeholder="Quantité"
+                            style="margin-left: 10px;"
+                            disabled
+                        >
                     </div>
                 @endforeach
             </fieldset>
@@ -62,4 +72,11 @@
             <button type="submit">Créer la recette</button>
         </form>
     </div>
+
+    <script>
+        function toggleQuantityInput(checkbox) {
+            const quantityInput = checkbox.nextElementSibling.nextElementSibling;
+            quantityInput.disabled = !checkbox.checked;
+        }
+    </script>
 </x-app>

@@ -47,12 +47,22 @@
                     <div>
                         <input
                             type="checkbox"
-                            name="ingredients[]"
+                            name="ingredients[{{ $ingredient->id }}][id]"
                             value="{{ $ingredient->id }}"
                             id="ingredient-{{ $ingredient->id }}"
                             @if ($recette->ingredients->contains($ingredient->id)) checked @endif
+                            onchange="toggleQuantityInput(this)"
                         >
                         <label for="ingredient-{{ $ingredient->id }}">{{ $ingredient->nom }}</label>
+                        <input
+                            type="number"
+                            name="ingredients[{{ $ingredient->id }}][quantite]"
+                            min="1"
+                            value="{{ $recette->ingredients->find($ingredient->id)->compose->quantite ?? '' }}"
+                            placeholder="Quantité"
+                            style="margin-left: 10px;"
+                            @if (!$recette->ingredients->contains($ingredient->id)) disabled @endif
+                        >
                     </div>
                 @endforeach
             </fieldset>
@@ -68,4 +78,11 @@
             </div>
         @endif
     </div>
+
+    <script>
+        function toggleQuantityInput(checkbox) {
+            const quantityInput = checkbox.nextElementSibling.nextElementSibling;
+            quantityInput.disabled = !checkbox.checked;
+        }
+    </script>
 </x-app>

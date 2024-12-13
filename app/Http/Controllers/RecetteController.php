@@ -122,8 +122,8 @@ class RecetteController extends Controller
             $recette->ingredients()->detach();
 
             $ingredients = $request->input('ingredients', []);
-            foreach ($ingredients as $ingredient_id) {
-                $recette->ingredients()->attach($ingredient_id, ['quantite' => rand(1, 10)]);
+            foreach ($ingredients as $details) {
+                $recette->ingredients()->attach($details['id'], ['quantite' => $details['quantite']]);
             }
 
             return redirect()->route('recettes.index')
@@ -191,9 +191,8 @@ class RecetteController extends Controller
             $recette->ingredients()->detach();
 
             $ingredients = $request->input('ingredients', []);
-
-            foreach ($ingredients as $ingredient_id) {
-                $recette->ingredients()->attach($ingredient_id, ['quantite' => rand(1, 10)]);
+            foreach ($ingredients as $details) {
+                $recette->ingredients()->attach($details['id'], ['quantite' => $details['quantite']]);
             }
 
             if ($request->hasFile('visuel') && $request->file('visuel')->isValid()) {
